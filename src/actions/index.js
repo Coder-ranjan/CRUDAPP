@@ -73,13 +73,10 @@ export function fetchData() {
 export function create(obj) {
     return function (dispatch) {
         return axios({
-            headers: {
-                "Content-Type": "application/json"
-            },
             url: apiUrl,
             timeout: 20000,
             method: 'post',
-            data: JSON.stringify(obj)
+            data: obj
         })
             .then(function(response) {
                 dispatch(createData());
@@ -96,8 +93,7 @@ export function fetchDataById(id){
         return axios({
             url: url,
             timeout: 20000,
-            method: 'get',
-            responseType: 'json'
+            method: 'get'
         })
             .then(function(response) {
                 dispatch(getDataById(response.data));
@@ -118,13 +114,10 @@ export function update(obj) {
     const url = apiUrl+'/'+obj.id;
     return function(dispatch) {
         return axios({
-            headers: {
-                "Content-Type": "application/json"
-            },
             url: url,
             timeout: 20000,
             method: 'put',
-            data: JSON.stringify(obj)
+            data: obj
         })
             .then(function(response) {
                 dispatch(updateData(response.data));
@@ -141,8 +134,7 @@ export function deleteBookById(id){
         return axios({
             url: url,
             timeout: 20000,
-            method: 'delete',
-            responseType: 'json'
+            method: 'delete'
         })
             .then(function(response) {
                 dispatch(deleteBook(response.data));
